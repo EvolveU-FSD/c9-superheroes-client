@@ -40,22 +40,26 @@ const SuperheroDetail = (props) => {
     </div>
   );
 };
+
 const SuperheroList = () => {
   const [superheroes, setSuperheroes] = useState([]);
+
   useEffect(() => {
     const getSuperheros = async () => {
-      const response = await fetch("/api/superhero/list");
+      const response = await fetch("/api/superhero");
       const superheroesData = await response.json();
       setSuperheroes(superheroesData);
     };
+
     getSuperheros();
   }, []);
+
   return (
     <div>
       <h2>Superhero List</h2>
       {superheroes.length > 0
         ? superheroes.map((superhero) => {
-            return <SuperheroDetail superhero={superhero} />;
+            return <SuperheroDetail key={superhero._id} superhero={superhero} />;
           })
         : "No superheroes"}
     </div>
