@@ -1,13 +1,26 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import './App.css';
+import NavBar from './components/NavBar';
+import SuperheroDetail from './components/SuperheroDetail';
 import SuperheroForm from './components/SuperheroForm';
 import SuperheroList from './components/SuperheroList';
 
 function App() {
   return (
     <div className="App">
-      <h1>Superheroes</h1>
+      <Router>
+        <NavBar />
+        <h1>Superheroes</h1>
+        <Routes>
+          <Route path="/" element={<SuperheroList />} />
+          <Route path="/create" element={<SuperheroForm />} />
+          <Route path="/detail/:id" element={<SuperheroDetail />} />
+        </Routes>
+      </Router>
+      {/* <SuperheroDetail id={superheroId} />
       <SuperheroForm />
-      <SuperheroList />
+      <SuperheroList setSuperheroId={setSuperheroId} /> */}
     </div>
   );
 }
