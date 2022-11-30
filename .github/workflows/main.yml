@@ -1,0 +1,43 @@
+name: Build and Copy To Server
+
+on:
+  push:
+    branches: [release]
+  pull_request:
+    branches: [release]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm install
+      - run: npm run build
+      - run: git clone https://danibarker:${{ secrets.PAT }}@github.com/EvolveU-FSD/c9-superheroes-server target
+      - run: rm -rf target/public/*
+      - run: cp -r build/* target/public
+      - name: Push Client
+        working-directory: ./target
+        run: |
+          pwd
+          ls -a
+          ls public
+          git remote --verbose
+          git add .
+          git config --global user.email "caseybarker86@gmail.com"
+          git config --global user.name "Danielle Barker"
+          git diff-index --quiet HEAD || git commit -m "Automatic publish from github.com/project"
+          git status
+          git push
+
+
