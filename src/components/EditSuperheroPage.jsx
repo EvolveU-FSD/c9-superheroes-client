@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import SuperheroForm from './SuperheroForm';
 
 function EditSuperheroPage() {
+  const navigate = useNavigate();
   const [superhero, setSuperhero] = useState();
   const params = useParams();
   const id = params.id;
@@ -27,6 +28,7 @@ function EditSuperheroPage() {
     });
     const newSuperhero = await response.json();
     console.log(newSuperhero);
+    navigate(-1);
   };
   return (
     <SuperheroForm

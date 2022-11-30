@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import SuperheroForm from './SuperheroForm';
 
 function CreateSuperheroPage() {
+  const navigate = useNavigate();
   const handleSubmit = async (superhero) => {
     const response = await fetch('/api/superhero', {
       method: 'POST',
@@ -12,6 +14,7 @@ function CreateSuperheroPage() {
     });
     const newSuperhero = await response.json();
     console.log(newSuperhero);
+    navigate(-1);
   };
   return (
     <SuperheroForm handleSubmit={handleSubmit} buttonText="Add Superhero" />
