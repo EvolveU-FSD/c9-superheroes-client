@@ -5,7 +5,7 @@ import CreateSuperheroPage from './components/CreateSuperheroPage';
 import EditSuperheroPage from './components/EditSuperheroPage';
 import NavBar from './components/NavBar';
 import SuperheroDetail from './components/SuperheroDetail';
-import SuperheroForm from './components/SuperheroForm';
+// import SuperheroForm from './components/SuperheroForm';
 import SuperheroList from './components/SuperheroList';
 
 function App() {
