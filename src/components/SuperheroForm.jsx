@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 
-const SuperheroForm = () => {
+const SuperheroForm = (props) => {
+  const { superhero, buttonText, handleSubmit } = props;
   const [name, setName] = useState('');
   const [alterEgo, setAlterEgo] = useState('');
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const superhero = {
-      name,
-      alterEgo
-    };
-    const response = await fetch('/api/superhero', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(superhero)
-    });
-    const newSuperhero = await response.json();
-    console.log(newSuperhero);
-  };
-
+  useEffect(() => {
+    if (superhero) {
+      setAlterEgo(superhero.alterEgo);
+      setName(superhero.name);
+    }
+  }, [superhero]);
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        const superheroValues = {
+          alterEgo,
+          name
+        };
+        handleSubmit(superheroValues);
+      }}
+    >
       <Box
         sx={{
           display: 'flex',
@@ -51,7 +49,7 @@ const SuperheroForm = () => {
           value={alterEgo}
         />
         <Button type="submit" variant="contained" size="large">
-          Add Superhero
+          {buttonText}
         </Button>
       </Box>
     </form>
