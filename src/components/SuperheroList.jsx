@@ -86,7 +86,9 @@ const SuperheroList = () => {
               >
                 <TableCell component="th" scope="row">
                   {superhero.name}
-                  <Link to={`/detail/${superhero._id}`}>Go to Detail</Link>
+                  <Link to={`/superheroes/detail/${superhero._id}`}>
+                    Go to Detail
+                  </Link>
                 </TableCell>
                 <TableCell>{superhero.alterEgo}</TableCell>
                 <TableCell>
