@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 const SuperheroDetail = () => {
   const [superhero, setSuperhero] = useState();
@@ -71,6 +72,11 @@ const SuperheroDetail = () => {
               })}
             </ul>
           </div>
+          <Link to={`/edit/${id}`}>
+            <Button variant="outlined" size="large">
+              Edit {superhero.name}
+            </Button>
+          </Link>
         </CardContent>
       </Card>
     </div>
