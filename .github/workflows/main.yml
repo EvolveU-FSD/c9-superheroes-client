@@ -24,7 +24,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: git clone https://danibarker:${{ secrets.PAT }}@github.com/EvolveU-FSD/c9-superheroes-server target
-      - run: git checkout release
+      - run: cd target && git checkout release
       - run: rm -rf target/public/*
       - run: cp -r build/* target/public
       - name: Push Client
