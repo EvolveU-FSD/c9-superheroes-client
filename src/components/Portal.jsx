@@ -24,8 +24,12 @@ const Portal = () => {
     fetchProfile();
   }, []);
 
+  const authContextValue = {
+    profile
+  };
+
   return (
-    <AuthContext.Provider value={profile}>
+    <AuthContext.Provider value={authContextValue}>
       <Box>
         <NavBar />
         <Outlet />

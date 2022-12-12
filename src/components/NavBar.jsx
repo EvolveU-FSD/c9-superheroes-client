@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from './Portal';
 
 export default function NavBar() {
-  const profile = useContext(AuthContext);
+  const { profile } = useContext(AuthContext);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
