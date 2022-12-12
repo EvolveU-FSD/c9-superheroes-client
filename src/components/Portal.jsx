@@ -1,7 +1,9 @@
 import { Box } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import NavBar from './NavBar';
+
+export const AuthContext = createContext(null);
 
 const Portal = () => {
   const [profile, setProfile] = useState();
@@ -23,10 +25,12 @@ const Portal = () => {
   }, []);
 
   return (
-    <Box>
-      <NavBar profile={profile} />
-      <Outlet />
-    </Box>
+    <AuthContext.Provider value={profile}>
+      <Box>
+        <NavBar />
+        <Outlet />
+      </Box>
+    </AuthContext.Provider>
   );
 };
 

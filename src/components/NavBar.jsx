@@ -3,10 +3,12 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from './Portal';
 
-export default function NavBar(props) {
-  const profile = props.profile;
+export default function NavBar() {
+  const profile = useContext(AuthContext);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
