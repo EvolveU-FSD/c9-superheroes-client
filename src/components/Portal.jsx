@@ -1,40 +1,16 @@
 import { Box } from '@mui/material';
-import { createContext, useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import AuthProvider from './AuthProvider';
 import NavBar from './NavBar';
 
-export const AuthContext = createContext(null);
-
 const Portal = () => {
-  const [profile, setProfile] = useState();
-
-  useEffect(() => {
-    async function fetchProfile() {
-      const response = await fetch('/api/profile');
-
-      if (!response.ok) {
-        return;
-      }
-
-      const profile = await response.json();
-
-      setProfile(profile);
-    }
-
-    fetchProfile();
-  }, []);
-
-  const authContextValue = {
-    profile
-  };
-
   return (
-    <AuthContext.Provider value={authContextValue}>
+    <AuthProvider>
       <Box>
         <NavBar />
         <Outlet />
       </Box>
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 };
 
