@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import SuperheroForm from './SuperheroForm';
+import SuperheroFormClass from './SuperheroFormClass';
 
 function CreateSuperheroPage() {
   const navigate = useNavigate();
@@ -17,7 +18,10 @@ function CreateSuperheroPage() {
     navigate(-1);
   };
   return (
-    <SuperheroForm handleSubmit={handleSubmit} buttonText="Add Superhero" />
+    <SuperheroFormClass
+      handleSubmit={handleSubmit}
+      buttonText="Add Superhero"
+    />
   );
 }
 
